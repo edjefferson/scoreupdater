@@ -19,7 +19,7 @@ $(document).ready(function () {
     var pathname = window.location.pathname;
     console.log(pathname);
     if (pathname == "/"){
-        // will call refreshPartial every 3 seconds
+        // will call refreshPartial every 1 seconds
     setInterval(refreshPartial, 1000)
 };
 });
