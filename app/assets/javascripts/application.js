@@ -14,3 +14,20 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function () {
+    var pathname = window.location.pathname;
+    console.log(pathname);
+    if (pathname == "/"){
+        // will call refreshPartial every 3 seconds
+    setInterval(refreshPartial, 1000)
+};
+});
+
+function refreshPartial() {
+  $.ajax({
+    url: "/",
+    type: "GET",
+    dataType: "script"
+  });
+}
