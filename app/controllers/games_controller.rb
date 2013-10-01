@@ -64,11 +64,6 @@ class GamesController < ApplicationController
   def status
     @latest_game = Game.last
     @leader = get_leader
-    respond_to do |format|
-      format.html
-      format.js
-    end
-    
   end
 
   def get_leader
