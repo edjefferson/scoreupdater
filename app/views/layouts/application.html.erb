@@ -9,7 +9,24 @@
 </head>
 <body>
 
+<%if signed_in? %>
+
 <%= yield %>
 
+<% else %>
+
+
+<%= form_for(:session, url: sessions_path) do |f| %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+ <% end %>
 </body>
 </html>
