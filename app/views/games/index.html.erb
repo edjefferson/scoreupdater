@@ -1,11 +1,11 @@
 <% if signed_in? %>
 
-<h1>Listing games</h1>
+<h1>Listing rounds</h1>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Game ID</th>
+      <th>Round ID</th>
       <th>Player one</th>
       <th>Player two</th>
       <th>Score one</th>
@@ -31,11 +31,12 @@
 </table>
 
 <br>
-
-<%= link_to 'New Game', new_game_path %>
+<%= link_to 'Current Round', edit_game_path(@current_game) %>
+<br />
+<%= link_to 'New Round', new_game_path %>
 
 <br />
 
-<%= link_to 'Delete All Games', remove_all_games_path, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Delete All Rounds', remove_all_games_path, data: { confirm: 'Are you sure?' } %>
 
 <%end%>

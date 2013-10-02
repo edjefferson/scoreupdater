@@ -5,6 +5,7 @@ class GamesController < ApplicationController
   # GET /games.json
   def index
     @games = Game.all.reverse
+    @current_game = Game.last
   end
 
   # GET /games/1
