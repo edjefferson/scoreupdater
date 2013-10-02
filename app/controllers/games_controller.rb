@@ -33,6 +33,7 @@ class GamesController < ApplicationController
     @game = Game.new
     @game.player_one = get_previous_winner[0]
     @game.score_one = get_previous_winner[1]
+    @game.score_two = 0
   end
 
   # GET /games/1/edit
