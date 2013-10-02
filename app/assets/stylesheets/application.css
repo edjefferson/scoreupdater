@@ -23,6 +23,14 @@
  */
 
 /*! normalize.css v2.1.0 | MIT License | git.io/normalize */
+
+@font-face {
+    font-family: 'dinproblack';
+    src: url('dinproblack.ttf') format('truetype');
+}
+
+
+
 article,
 aside,
 details,
@@ -201,7 +209,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: 'Chivo', sans-serif;
+  font-family: 'dinproblack';
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
@@ -408,7 +416,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: 'Chivo', sans-serif;
+  font-family: 'dinproblack';
   font-weight: 400;
   line-height: 1.1;
 }
@@ -450,7 +458,7 @@ h2,
 }
 h3,
 .h3 {
-  font-size: 24px;
+  font-size: 30px;
 }
 h4,
 .h4 {
@@ -2102,4 +2110,4 @@ input[type="button"].btn-block {
 
 
 .player1 {color: red; font-size: 64px;}
-.player2 {color: blue; font-size: 64px;}
+.player2 {color: red; font-size: 64px;}

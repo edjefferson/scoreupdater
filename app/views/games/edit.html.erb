@@ -13,7 +13,7 @@
   <div class="btn-group">
 	<% [-2500,-500,500,1000,1500,2000,3000,4000,5000].each do |value| %>
 
-  	<%= link_to "give player #{player} #{value}", score_game_path(:player => player, :value => value), {:class => "btn btn-default" } %>
+  	<%= link_to "give player #{player} #{value}", score_game_path(:id => @game.id, :player => player, :value => value), {:class => "btn btn-default" } %>
   	<br />
 	<% end %>
   </div>

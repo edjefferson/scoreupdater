@@ -2,7 +2,7 @@
 
 <h1>Listing games</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Game ID</th>
@@ -24,7 +24,7 @@
         <td><%= game.score_one %></td>
         <td><%= game.score_two %></td>
         <td><%= link_to 'Edit', edit_game_path(game) %></td>
-        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -33,5 +33,9 @@
 <br>
 
 <%= link_to 'New Game', new_game_path %>
+
+<br />
+
+<%= link_to 'Delete All Games', remove_all_games_path, data: { confirm: 'Are you sure?' } %>
 
 <%end%>

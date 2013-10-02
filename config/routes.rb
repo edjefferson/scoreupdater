@@ -1,7 +1,10 @@
 Greedgameshow::Application.routes.draw do
   resources :games do
     member do
-      get 'score'
+      get 'score'  
+    end
+    collection do
+      get 'remove_all'
     end
   end
   root 'games#status'

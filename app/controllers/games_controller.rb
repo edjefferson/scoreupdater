@@ -79,6 +79,14 @@ class GamesController < ApplicationController
     end
   end
 
+   def remove_all
+    Game.delete_all
+    respond_to do |format|
+      format.html { redirect_to games_url }
+      format.json { head :no_content }
+    end
+  end
+
   def status
     @latest_game = Game.last || Game.create(player_one: "Player 1", player_two: "Player 2", score_one: "0", score_two: "0")
     @leader = get_leader
@@ -111,9 +119,9 @@ class GamesController < ApplicationController
   end
 
   def change_points(player,points)
-    if player = 1 
+    if player == 1 
       @game.score_one += points.to_i
-    elsif player = 2
+    elsif player == 2
       @game.score_two += points.to_i
     end
     @game.save
