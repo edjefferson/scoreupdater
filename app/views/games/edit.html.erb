@@ -1,6 +1,23 @@
 <h1>Editing game</h1>
 
+ <div class="row">
+  <div class= "col-xs-4">
 <%= render 'form' %>
 
-<%= link_to 'Show', @game %> |
+<%= link_to 'NewGame', new_game_path %> |
 <%= link_to 'Back', games_path %>
+</div>
+
+<% ["one","two"].each do |player| %>
+<div class = "col-xs-4">
+  <div class="btn-group">
+	<% [-2500,-500,500,1000,1500,2000,3000,4000,5000].each do |value| %>
+
+  	<%= link_to "give player #{player} #{value}", score_game_path(:player => player, :value => value), {:class => "btn btn-default" } %>
+  	<br />
+	<% end %>
+  </div>
+</div>
+<% end %>
+
+</div>

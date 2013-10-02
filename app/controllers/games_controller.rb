@@ -10,15 +10,33 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+
+  end
+
+  def score
+    @game= Game.find(params[:id])
+    if params[:player] == "one"
+      @game.score_one += params[:value].to_i
+    elsif params[:player] == "two"
+      @game.score_two += params[:value].to_i
+    end
+    @game.save
+    respond_to do |format|
+      format.html { redirect_to edit_game_path }
+      format.json { head :no_content }
+    end
   end
 
   # GET /games/new
   def new
     @game = Game.new
+    @game.player_one = get_previous_winner[0]
+    @game.score_one = get_previous_winner[1]
   end
 
   # GET /games/1/edit
   def edit
+
   end
 
   # POST /games
@@ -28,7 +46,7 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
-        format.html { redirect_to '/games', notice: 'Game was successfully created.' }
+        format.html { render action: 'edit', notice: 'Game was successfully created.' }
         format.json { render action: 'show', status: :created, location: @game }
       else
         format.html { render action: 'new' }
@@ -42,7 +60,7 @@ class GamesController < ApplicationController
   def update
     respond_to do |format|
       if @game.update(game_params)
-        format.html { redirect_to '/games', notice: 'Game was successfully updated.' }
+        format.html { render action: 'edit', notice: 'Game was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -62,19 +80,44 @@ class GamesController < ApplicationController
   end
 
   def status
-    @latest_game = Game.last
+    @latest_game = Game.last || Game.create(player_one: "Player 1", player_two: "Player 2", score_one: "0", score_two: "0")
     @leader = get_leader
   end
+
+   def get_previous_winner
+    last_game = Game.last
+    if last_game == nil
+      ["",0]
+    else
+
+      if last_game.score_one >= last_game.score_two
+        [last_game.player_one, last_game.score_one]
+      else
+        [last_game.player_two, last_game.score_two]
+      end
+    end
+  end
+
 
   def get_leader
     max_one = Game.order("score_one DESC").first
     max_two = Game.order("score_two DESC").first
 
-    if max_one.score_one > max_two.score_two
+    if max_one.score_one >= max_two.score_two
       [max_one.player_one, max_one.score_one]
     else
       [max_two.player_two, max_two.score_two]
     end
+  end
+
+  def change_points(player,points)
+    if player = 1 
+      @game.score_one += points.to_i
+    elsif player = 2
+      @game.score_two += points.to_i
+    end
+    @game.save
+    edit_game_path
   end
 
   private

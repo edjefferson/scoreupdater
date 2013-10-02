@@ -1,5 +1,9 @@
 Greedgameshow::Application.routes.draw do
-  resources :games
+  resources :games do
+    member do
+      get 'score'
+    end
+  end
   root 'games#status'
   resources :sessions, only: [:new, :create, :destroy]
 
