@@ -31,8 +31,20 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
-    @game.player_one = get_previous_winner[0]
-    @game.score_one = get_previous_winner[1]
+    
+    
+    last_game = Game.last
+    if params[:player] == "1"
+      @game.player_one = last_game.player_one
+      @game.score_one = last_game.score_one
+    elsif params[:player] == "2"
+      @game.player_one = last_game.player_two
+      @game.score_one = last_game.score_two
+    end
+
+       
+
+
     @game.score_two = 0
   end
 
@@ -94,19 +106,7 @@ class GamesController < ApplicationController
     @leader = get_leader
   end
 
-   def get_previous_winner
-    last_game = Game.last
-    if last_game == nil
-      ["",0]
-    else
 
-      if last_game.score_one >= last_game.score_two
-        [last_game.player_one, last_game.score_one]
-      else
-        [last_game.player_two, last_game.score_two]
-      end
-    end
-  end
 
 
   def get_leader
