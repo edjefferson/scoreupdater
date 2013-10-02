@@ -1,6 +1,15 @@
 <% if signed_in? %>
 
 <h1>Listing rounds</h1>
+<br>
+<%= link_to 'Current Round', edit_game_path(@current_game) %>
+<br />
+<%= link_to 'New Round', new_game_path %>
+
+<br />
+
+<%= link_to 'Delete All Rounds', remove_all_games_path, data: { confirm: 'Are you sure?' } %>
+
 
 <table class="table">
   <thead>
@@ -30,13 +39,5 @@
   </tbody>
 </table>
 
-<br>
-<%= link_to 'Current Round', edit_game_path(@current_game) %>
-<br />
-<%= link_to 'New Round', new_game_path %>
-
-<br />
-
-<%= link_to 'Delete All Rounds', remove_all_games_path, data: { confirm: 'Are you sure?' } %>
 
 <%end%>
