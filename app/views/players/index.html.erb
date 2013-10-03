@@ -1,0 +1,50 @@
+<h1>Listing players</h1>
+<br>
+
+
+<br />
+
+<div class="row">
+  <div class= "col-xs-4">
+
+<%= link_to 'Update Scores', update_scores_players_path, :class => "btn btn-default btn-block" %>
+
+<%= link_to 'Delete All Players', remove_all_players_path, :class => "btn btn-default btn-block", data: { confirm: 'Are you sure?' } %>
+
+</div>
+
+  <div class= "col-xs-4">
+
+    <%= link_to 'New Player 1', new_player_path(:player_no => 1), :class => "btn btn-default btn-block" %>
+    
+    <%= link_to 'New Player 2', new_player_path(:player_no => 2), :class => "btn btn-default btn-block" %>
+    </div>
+
+</div>
+
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Score</th>
+      <th>Player Number</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= player.id %></td>
+        <td><%= player.name %></td>
+        <td><%= player.score %></td>
+        <td><%= player.player_no %></td>
+        <td><%= link_to 'Edit', edit_player_path(player) %></td>
+        <td><%= link_to 'Delete', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,63 @@
+<div class="row">
+  <div class= "col-xs-4">
+    <h1>Scoring</h1>
+    <h5>Player 1</h5>
+    
+      <%= form_for(@player_one) do |f| %>
+
+
+        <div class="field">
+          <%= f.label :name %><br>
+          <%= f.text_field :name %>
+        </div>
+        <div class="field">
+          <%= f.label :score %><br>
+          <%= f.text_field :score %>
+        </div>
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+      
+   <% end %>
+   <h5>Player 2</h5>
+   <%= form_for(@player_two) do |f| %>
+
+
+        <div class="field">
+          <%= f.label :name %><br>
+          <%= f.text_field :name %>
+        </div>
+        <div class="field">
+          <%= f.label :score %><br>
+          <%= f.text_field :score %>
+        </div>
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+      
+   <% end %>
+
+    
+
+    <%= link_to 'New Player 1', new_player_path(:player_no => 1) %>
+    <br>
+    <%= link_to 'New Player 2', new_player_path(:player_no => 2) %>
+    <br>
+    <%= link_to 'See All Players', players_path %>
+  </div>
+
+<% [@player_one,@player_two].each do |player| %>
+<div class = "col-xs-4">
+  <h5>Player <%= player.player_no %>: <%= player.name %></h5>
+  <br>
+  <div class="btn-group">
+  <% [-2500,-500,500,1000,1500,2000,3000,4000,5000].each do |value| %>
+
+    <%= link_to "Player #{player.player_no} #{number_to_currency(value, unit: "£", precision: 0)}", score_player_path(:id => player.id, :value => value), {:class => "btn btn-xs btn-default btn-block" } %>
+    <br />
+  <% end %>
+  </div>
+</div>
+<% end %>
+
+</div>

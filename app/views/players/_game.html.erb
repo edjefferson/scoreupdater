@@ -1,0 +1,13 @@
+<div class="row player1">
+<div class="col-xs-6"><h1><%= @player_one.name %></h1></div>
+<div class="col-xs-6"><h1><%= number_to_currency(@player_one.score, unit: "£", precision: 0) %></h1></div>
+</div>
+<div class="row player2">
+<div class="col-xs-6"><h1><%= @player_two.name %></h1></div>
+<div class="col-xs-6"><h1><%= number_with_delimiter(number_to_currency(@player_two.score, unit: "£", precision: 0)) %></h1></div>
+</div>
+<div class="row">
+<%if @leader.score > 0 %>
+<div class="col-xs-12"><h3>CURRENT LEADER: <%= @leader.name %> (<%= number_to_currency(@leader.score, unit: "£", precision: 0) %>)</h3></div>
+<%end%>
+</div>
