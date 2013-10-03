@@ -6,21 +6,12 @@ class PlayersController < ApplicationController
   def new
     @player = Player.new
     
-    
-    
     @player.player_no = params[:player_no].to_i
 
 
     @player.score = 0
   end
 
-  # GET /games/1/edit
-  def edit
-
-  end
-
-  # POST /games
-  # POST /games.json
   def create
 
     @player = Player.new(player_params)
@@ -30,9 +21,7 @@ class PlayersController < ApplicationController
     respond_to do |format|
       if @player.save
         format.html { redirect_to update_scores_players_path }
-        @old_player = Player.where(player_no: @player.player_no).first
-        @old_player.player_no = nil
-        @old_player.save
+        remove_player_no(@player.player_no)
       else
         format.html { render action: 'new' }
       end
@@ -61,7 +50,6 @@ class PlayersController < ApplicationController
     @player.save
     respond_to do |format|
       format.html { redirect_to update_scores_players_path }
-      format.json { head :no_content }
     end
   end
   def update
@@ -69,10 +57,8 @@ class PlayersController < ApplicationController
     respond_to do |format|
       if @player.update(player_params)
         format.html { redirect_to update_scores_players_path }
-        format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @player.errors, status: :unprocessable_entity }
       end
     end
 
@@ -83,12 +69,37 @@ class PlayersController < ApplicationController
 
   end
 
+  def remove_player_no(player_no)
+    @old_player = Player.where(player_no: player_no).first
+    @old_player.player_no = nil
+    @old_player.save
+
+  end
+
+  def assign_player_no
+    @player_no = params[:player_no].to_i
+    @player = Player.find(params[:id])
+    if @player.player_no == nil
+      remove_player_no(@player_no)
+      @player.player_no = @player_no
+      @player.save
+    elsif @player.player_no != @player_no
+      @old_player = Player.where(player_no: @player_no).first
+      @old_player.player_no = @player.player_no
+      @old_player.save
+      @player.player_no = @player_no
+      @player.save
+    end
+    respond_to do |format|
+      format.html { redirect_to players_url }
+    end
+  end
+
   def destroy
     max_id = Player.maximum(:id)
     Player.find(params[:id]).destroy
     respond_to do |format|
       format.html { redirect_to players_url }
-      format.json { head :no_content }
     end
     create_sample_players(max_id)
   end

@@ -1,12 +1,4 @@
 Greedgameshow::Application.routes.draw do
-  resources :games do
-    member do
-      get 'score'  
-    end
-    collection do
-      get 'remove_all'
-    end
-  end
   root 'players#status'
   resources :players do
     collection do
@@ -14,6 +6,7 @@ Greedgameshow::Application.routes.draw do
       get 'update_scores'
     end
     member do
+      get 'assign_player_no'
       get 'score'
     end
   end
