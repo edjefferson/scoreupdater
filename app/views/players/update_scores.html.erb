@@ -1,6 +1,6 @@
 <div class="row">
   <div class= "col-xs-4">
-    <h1>Scoring</h1>
+    <h3>Scoring</h3>
     <h5>Player 1</h5>
     
       <%= form_for(@player_one) do |f| %>
@@ -39,11 +39,11 @@
 
     
 
-    <%= link_to 'New Player 1', new_player_path(:player_no => 1) %>
-    <br>
-    <%= link_to 'New Player 2', new_player_path(:player_no => 2) %>
-    <br>
-    <%= link_to 'See All Players', players_path %>
+    <%= link_to 'New Player 1', new_player_path(:player_no => 1), :class => "btn btn-xs btn-default btn-block" %>
+
+    <%= link_to 'New Player 2', new_player_path(:player_no => 2), :class => "btn btn-xs btn-default btn-block" %>
+
+    <%= link_to 'See All Players', players_path, :class => "btn btn-default btn-xs btn-block" %>
   </div>
 
 <% [@player_one,@player_two].each do |player| %>
