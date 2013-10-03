@@ -1777,6 +1777,7 @@ textarea.input-lg {
   }
 }
 .btn {
+
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
@@ -1869,6 +1870,7 @@ fieldset[disabled] .btn-default.active {
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
+
   color: #ffffff;
   background-color: #3276b1;
   border-color: #285e8e;

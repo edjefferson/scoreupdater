@@ -53,3 +53,4 @@ gem 'bcrypt-ruby', '3.0.1'
 # gem 'debugger', group: [:development, :test]
 
 gem 'rails_12factor'
+gem 'activerecord-reset-pk-sequence'

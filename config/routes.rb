@@ -7,10 +7,22 @@ Greedgameshow::Application.routes.draw do
       get 'remove_all'
     end
   end
-  root 'games#status'
+  root 'players#status'
+  resources :players do
+    collection do
+      get 'remove_all'
+      get 'update_scores'
+    end
+    member do
+      get 'score'
+    end
+  end
+  get 'scoring' => 'players#update_scores'
   resources :sessions, only: [:new, :create, :destroy]
 
-  get 'sessions' => 'games#index'
+
+
+  get 'sessions' => 'players#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
