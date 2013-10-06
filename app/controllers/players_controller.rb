@@ -1,6 +1,6 @@
 class PlayersController < ApplicationController
   def index
-    @players = Player.all.reverse
+    @players = Player.all.order("id DESC")
   end
 
   def new
