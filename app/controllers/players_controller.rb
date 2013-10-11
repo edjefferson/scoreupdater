@@ -30,8 +30,8 @@ class PlayersController < ApplicationController
 
 	def status
     create_sample_players(0)
-    @player_one = Player.where(:player_no => 1).first
-    @player_two = Player.where(:player_no => 2).first
+    @player_one = Player.where(:player_no => 1).last
+    @player_two = Player.where(:player_no => 2).last
     @leader = Player.order("score DESC").first
     
   end
@@ -39,8 +39,8 @@ class PlayersController < ApplicationController
   def update_scores
     max_id = Player.maximum(:id)
     create_sample_players(max_id)
-    @player_one = Player.where(:player_no => 1).first
-    @player_two = Player.where(:player_no => 2).first
+    @player_one = Player.where(:player_no => 1).last
+    @player_two = Player.where(:player_no => 2).last
   end
 
 
